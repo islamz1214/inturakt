@@ -1,3 +1,22 @@
 <template name="registration">
-  <h1>Registration Page</h1>
+  <div class="registration-container">
+    <div class="registration">
+      <h2>Sign-up</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="username" class="form-control" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email address</label>
+          <input type="email" class="form-control" id="userEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Password</label>
+          <input type="password" class="form-control" id="userPassword" placeholder="Password" required>
+        </div>
+        <button type="register" class="btn btn-default" id="registerButton">Register</button>
+      </form>
+    </div>
+  </div>
 </template>

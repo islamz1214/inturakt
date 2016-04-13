@@ -6,9 +6,10 @@ import { login } from '../imports/ui/login/login.js';
 import { registration } from '../imports/ui/registration/registration.js';
 import { chat } from '../imports/ui/chat/chat.js';
 
+
 FlowRouter.route('/', {
   action: function() {
-    BlazeLayout.render("layout", {content: "home"});
+    BlazeLayout.render("home");
   }
 });
 

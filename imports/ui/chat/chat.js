@@ -1,13 +1,18 @@
 import './chat.html';
 
 
-Template.messages.helpers({
+
+Template.chat.helpers({
         messages: function() {
+        console.log(Meteor.user().emails[0].address);
         return Messages.find({}, { sort: { time: -1}});
-        }
+      },
+      currentUser: function() {
+      return Meteor.user().username;
+  }
     });
 
-Template.chatInput.events = {
+Template.chat.events = {
       'click #sendButton' : function(event) {
 
        const name = document.getElementById('name');
@@ -19,7 +24,7 @@ Template.chatInput.events = {
 
        if(message.value != '') {
          Messages.insert({
-           name: name.value,
+           user: Meteor.user().username,
            message: message.value,
            time: Date.now(),
          });

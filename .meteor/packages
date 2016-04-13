@@ -23,3 +23,6 @@ kadira:flow-router
 kadira:blaze-layout
 fourseven:scss
 reywood:bootstrap3-sass
+accounts-password
+accounts-ui
+twbs:bootstrap

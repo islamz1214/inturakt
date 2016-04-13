@@ -1,21 +1,38 @@
-<body>
-  {{> chatInput}}
-  <hr>
-  {{> messages}}
-</body>
+
 
 <!-- Title and User Input-->
-<template name="chatInput">
+<template name="chat">
+  <!--
   <h1>Inturakt</h1>
   <h4>The future of chat</h4>
+  <p>Current user: {{ currentUser }}</p>
   <p>Name: <input type="text" id="name"></p>
   <p>Message: <input type="text" id="message"></p>
   <button type="button" id="sendButton">Send</button>
-</template>
-
-<!-- Display messages -->
-<template name="messages">
+  <hr>
+  {{user}}
   {{#each messages}}
-  <strong>{{name}}:</strong> {{message}}<br>
+  <strong>{{user}}:</strong> {{message}}<br>
   {{/each}}
+-->
+<div id="wrapper">
+
+<div id="left-side">
+dssdf
+</div>
+
+<div id="right-side">
+<div class="circle">
+  <div class="top-i"></div>
+  <div class="bottom-i"></div>
+</div>
+
+<hr>
+</div>
+
+</div>
+
+
+
+
 </template>

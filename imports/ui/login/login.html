@@ -1,4 +1,5 @@
 <template name="login">
+
   <div class="login-container">
     <div class="login">
       <img src="images/logo.png" height="100px" class="img-circle center-block">
@@ -11,7 +12,8 @@
           <label for="userPassword">Password</label>
           <input type="password" class="form-control" id="userPassword" placeholder="Password" required>
         </div>
-        <button type="submit" class="btn btn-default">Login</button>
+        <button type="submit" id="loginButton" class="btn btn-default">Login</button>
+        <a href="registration"><button type="register" class="btn btn-default">Sign-up</button></a>
       </form>
     </div>
   </div>
