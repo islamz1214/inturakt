@@ -17,22 +17,43 @@
 -->
 <div id="wrapper">
 
-<div id="left-side">
-dssdf
+  <!-- CHAT-BOX (LEFT) -->
+  <div id="chat-box">
+    <div class="chat-messages">
+
+      {{#each messages}}
+      <strong>{{user}}:</strong> {{message}}<br>
+      {{/each}}
+    </div>
+    <div class="chat-input">
+      <form name="message" action="" class="chat-form">
+            <input name="input" type="text" class="chat-area" id="message"/>
+        </form>
+    </div>
+  </div>
+
+
+
+  <!-- CHAT-NAV (RIGHT) -->
+  <div id="chat-nav">
+    <div class="circle">
+      <div class="top-i"></div>
+      <div class="bottom-i"></div>
+    </div>
+    <p class="currentUser">{{ currentUser }}</p>
+    <hr>
+    <div class="planets">
+      <p>PLANETS ({{planets}})</p>
+    </div>
+    <div class="direct-messages">
+      <p>DIRECT MESSAGES ({{userCount}})</p>
+      {{#each users}}
+      <p>{{ username }}</p>
+      {{/each}}
+    </div>
+  </div>
+
 </div>
-
-<div id="right-side">
-<div class="circle">
-  <div class="top-i"></div>
-  <div class="bottom-i"></div>
-</div>
-
-<hr>
-</div>
-
-</div>
-
-
 
 
 </template>

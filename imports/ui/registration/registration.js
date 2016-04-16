@@ -5,8 +5,6 @@ import './registration.html';
 Template.registration.events = {
   'click #registerButton' : function(event) {
 
-    event.preventDefault();
-
     const username = document.getElementById('username').value;
     const email = document.getElementById('userEmail').value;
     const password = document.getElementById('userPassword').value;
@@ -17,5 +15,8 @@ Template.registration.events = {
       password: password,
     });
 
+    if(username != '' && email != '' && password != '') {
+      FlowRouter.go("login");
     }
   }
+}

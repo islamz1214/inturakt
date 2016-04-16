@@ -3,4 +3,4 @@
 */
 
 Messages = new Meteor.Collection('messages');
-//UserAccounts = new Meteor.Collection('users');
+Chanells = new Meteor.Collection('channels');

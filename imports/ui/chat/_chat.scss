@@ -1,26 +1,54 @@
-
+.currentUser {
+  margin-left: 5em;
+  padding-top: 1em;
+  font-weight: bold;
+}
 
 #wrapper {
 
 }
 
-#left-side {
-  width: calc(100% - 200px);
-  min-width: 500px;
+#chat-box {
+  width: calc(100% - 15em);
   height: 100vh;
   float:left;
-  background-color: blue;
 }
 
-#right-side {
-  width: 200px;
+.chat-messages {
+  height: 80vh;
+  border: 1px solid black;
+  padding-left: 1em;
+  overflow: auto;
+}
+
+.chat-input {
+  height: 20vh;
+  border: 1px solid black;
+
+}
+
+.chat-form {
+  padding-left: 1em;
+}
+
+.chat-area {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 15em);
+  margin-top: 1.5em;
+  border: 2px solid green;
+}
+
+
+
+#chat-nav {
+  width: 15em;
   height: 100vh;
   border: 1px solid green;
   float:left;
-
-
-
 }
+
 
 .circle {
   width: 8em;
@@ -52,7 +80,18 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-
   margin-top: .5em;
+}
 
+hr {
+  height: 1px;
+  background-color: green;
+}
+
+p {
+  padding-left: 1em;
+}
+
+.planets {
+  height: 30vh;
 }
