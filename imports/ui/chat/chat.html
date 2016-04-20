@@ -22,7 +22,7 @@
     <div class="chat-messages">
 
       {{#each messages}}
-      <strong>{{user}}:</strong> {{message}}<br>
+      <strong>{{user}} {{time}}:</strong> {{message}}<br>
       {{/each}}
     </div>
     <div class="chat-input">
@@ -43,7 +43,10 @@
     <p class="currentUser">{{ currentUser }}</p>
     <hr>
     <div class="planets">
-      <p>PLANETS ({{planets}})</p>
+      <p>PLANETS ({{ planetCount }})</p>
+      {{#each planets}}
+        <p class="planet-list {{active}}">{{ name }}</p>
+      {{/each}}
     </div>
     <div class="direct-messages">
       <p>DIRECT MESSAGES ({{userCount}})</p>

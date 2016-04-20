@@ -95,3 +95,15 @@ p {
 .planets {
   height: 30vh;
 }
+
+.planet-list {
+  padding-top: .5em;
+  padding-bottom: .5em;
+  cursor: pointer;
+  margin: 0;
+}
+
+.planet-list:hover, .planet-list.active {
+  background-color: green;
+  color: white;
+}
