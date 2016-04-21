@@ -4,10 +4,6 @@
   font-weight: bold;
 }
 
-#wrapper {
-
-}
-
 #chat-box {
   width: calc(100% - 15em);
   height: 100vh;
@@ -101,9 +97,15 @@ p {
   padding-bottom: .5em;
   cursor: pointer;
   margin: 0;
+  list-style: none;
+  color: red;
 }
 
-.planet-list:hover, .planet-list.active {
+.planet-name {
+  color: black;
+}
+
+.planet-list.active {
   background-color: green;
-  color: white;
+  width: 13em;
 }

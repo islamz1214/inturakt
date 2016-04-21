@@ -30,6 +30,15 @@ FlowRouter.route('/registration',{
 FlowRouter.route('/chat',{
   name:"chat",
   action: function(){
-    BlazeLayout.render("chat");
+    BlazeLayout.render("chat", {content: "messages"});
   }
 });
+
+/*
+FlowRouter.route('/chat', {
+  name:"chat",
+  //Session.set('planet', this.params.planet);
+  action: function() {
+    BlazeLayout.render("chat", {content: "messages"});
+  }
+});*/

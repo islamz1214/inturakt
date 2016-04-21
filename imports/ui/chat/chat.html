@@ -2,28 +2,18 @@
 
 <!-- Title and User Input-->
 <template name="chat">
-  <!--
-  <h1>Inturakt</h1>
-  <h4>The future of chat</h4>
-  <p>Current user: {{ currentUser }}</p>
-  <p>Name: <input type="text" id="name"></p>
-  <p>Message: <input type="text" id="message"></p>
-  <button type="button" id="sendButton">Send</button>
-  <hr>
-  {{user}}
-  {{#each messages}}
-  <strong>{{user}}:</strong> {{message}}<br>
-  {{/each}}
--->
+
 <div id="wrapper">
 
   <!-- CHAT-BOX (LEFT) -->
   <div id="chat-box">
     <div class="chat-messages">
 
+      {{>Template.dynamic template=content}}
+      <!--
       {{#each messages}}
       <strong>{{user}} {{time}}:</strong> {{message}}<br>
-      {{/each}}
+      {{/each}}-->
     </div>
     <div class="chat-input">
       <form name="message" action="" class="chat-form">
@@ -44,9 +34,11 @@
     <hr>
     <div class="planets">
       <p>PLANETS ({{ planetCount }})</p>
+
       {{#each planets}}
-        <p class="planet-list {{active}}">{{ name }}</p>
+        <p>{{> planet name=name }}</p>
       {{/each}}
+
     </div>
     <div class="direct-messages">
       <p>DIRECT MESSAGES ({{userCount}})</p>
