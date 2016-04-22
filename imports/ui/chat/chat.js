@@ -55,11 +55,11 @@ Template.chat.events = {
     if(event.which == 13 && message != '')
     {
       Messages.insert({
-      user: Meteor.user().username,
-      message: message,
-      time: Date.now(),
-      planetRoom: Session.get('planet'),
-    });
+        user: Meteor.user().username,
+        message: message,
+        time: Date.now(),
+        planetRoom: Session.get('planet'),
+      });
 
       document.getElementById('message').value = '';
       event.preventDefault();
