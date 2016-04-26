@@ -43,7 +43,7 @@
     <div class="direct-messages">
       <p>DIRECT MESSAGES ({{userCount}})</p>
       {{#each users}}
-      <p>{{ username }}</p>
+      <p>{{> directMessage username=username }}</p>
       {{/each}}
     </div>
   </div>

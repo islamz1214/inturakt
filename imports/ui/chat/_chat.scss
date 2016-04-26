@@ -92,20 +92,24 @@ p {
   height: 30vh;
 }
 
-.planet-list {
+.planet-list, .directMessage-list{
   padding-top: .5em;
   padding-bottom: .5em;
   cursor: pointer;
   margin: 0;
   list-style: none;
-  color: red;
 }
 
-.planet-name {
+.planet-name, .directMessage-name {
   color: black;
 }
 
 .planet-list.active {
-  background-color: green;
+  background-color: lightgreen;
+  width: 13em;
+}
+
+.directMessage-list.active {
+  background-color: lightgreen;
   width: 13em;
 }
