@@ -113,3 +113,19 @@ p {
   background-color: lightgreen;
   width: 13em;
 }
+
+.create-planet-icon {
+  float: right;
+  font-size: 1.5em;
+  margin-top: -.2em;
+  margin-right: .5em;
+  cursor: pointer;
+}
+
+.create-planet-modal {
+  text-align: center;
+}
+
+.radio-inline {
+  margin-left: 37%;
+}

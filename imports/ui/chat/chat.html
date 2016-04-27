@@ -5,6 +5,35 @@
 
 <div id="wrapper">
 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="create-planet-modal">Create Planet</h4>
+      </div>
+  <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+
+    <div class="radio-inline">
+      <label><input type="radio" name="optradio">Public</label>
+    </div>
+    <div class="radio-inline">
+      <label><input type="radio" name="optradio">Private</label>
+    </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+      </div>
+  </div>
+</form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
   <!-- CHAT-BOX (LEFT) -->
   <div id="chat-box">
     <div class="chat-messages">
@@ -24,6 +53,7 @@
 
 
 
+
   <!-- CHAT-NAV (RIGHT) -->
   <div id="chat-nav">
     <div class="circle">
@@ -33,7 +63,8 @@
     <p class="currentUser">{{ currentUser }}</p>
     <hr>
     <div class="planets">
-      <p>PLANETS ({{ planetCount }})</p>
+      <p>PLANETS ({{ planetCount }})  <div class="create-planet-icon" data-target="#myModal">&oplus;</div> </p>
+
 
       {{#each planets}}
         <p>{{> planet name=name }}</p>

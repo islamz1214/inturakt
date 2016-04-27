@@ -125,5 +125,9 @@ Template.chat.events = {
   'click .directMessage-list': function(event) {
     //Session.set('user', Meteor.user().username + this.username);
     Session.set('user', dm_generater(Meteor.user().username + this.username));
+  },
+  'click .create-planet-icon': function(event) {
+    $('#myModal').modal('show');
+
   }
 }
