@@ -1,9 +1,8 @@
-
-
-Planets.remove({});
-Planets.insert({
-  name: "Universe"
-});
-Planets.insert({
-  name: "A100",
-});
+if(Planets.find({}).count() === 0) {
+  Planets.insert({
+    name: "Universe"
+  });
+  Planets.insert({
+    name: "A100",
+  });
+}

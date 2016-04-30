@@ -106,7 +106,7 @@ Template.chat.events = {
 
    const message = document.getElementById('message').value;
 
-    if(event.which == 13 && message != '')
+    if(event.which == 13 && message.trim() != '')
     {
       Messages.insert({
         user: Meteor.user().username,
@@ -123,11 +123,20 @@ Template.chat.events = {
     Session.set('planet', this.name);
   },
   'click .directMessage-list': function(event) {
-    //Session.set('user', Meteor.user().username + this.username);
     Session.set('user', dm_generater(Meteor.user().username + this.username));
   },
   'click .create-planet-icon': function(event) {
     $('#myModal').modal('show');
+  },
+  'click .buttonCreatePlanet': function(event, template) {
+    const planetInput = template.find('.inputCreatePlanet').value;
 
+    console.log(planetInput);
+    if(planetInput.trim() != '') {
+      Planets.insert({
+        name: planetInput
+      });
+    }
   }
+
 }

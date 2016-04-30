@@ -12,23 +12,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="create-planet-modal">Create Planet</h4>
       </div>
-  <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 
-    <div class="radio-inline">
-      <label><input type="radio" name="optradio">Public</label>
-    </div>
-    <div class="radio-inline">
-      <label><input type="radio" name="optradio">Private</label>
-    </div>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <div>
+            <input type="text" class="form-control inputCreatePlanet" placeholder="Enter Planet Name">
+          </div>
+          <div class="radio-inline">
+            <input type="radio" name="optradio">Public
+          </div>
+          <div class="radio-inline">
+            <input type="radio" name="optradio">Private
+          </div>
+          <div>
+            <button class="btn btn-default buttonCreatePlanet" data-dismiss="modal">Create</button>
+          </div>
+        </div>
+      </form>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Create</button>
-      </div>
-  </div>
-</form>
+
+
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

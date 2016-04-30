@@ -128,4 +128,17 @@ p {
 
 .radio-inline {
   margin-left: 37%;
+  padding-bottom: 2em;
+}
+
+.inputCreatePlanet,
+.buttonCreatePlanet {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25em;
+}
+
+.planets {
+  overflow: auto;
 }
