@@ -3,7 +3,8 @@
 		<!--{{#if Template.subscriptionsReady}}-->
 
 			{{#each messages}}
-				<p>{{ user }}: {{ message }}</p>
+				<div class="user-icon"></div>
+				<p class="messagePara">{{ user }}: {{ message }}</p>
 			{{/each}}
 
 		<!--{{else}}

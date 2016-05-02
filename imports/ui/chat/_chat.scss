@@ -32,8 +32,14 @@
   margin-left: auto;
   margin-right: auto;
   width: calc(100% - 15em);
-  margin-top: 1.5em;
+
   border: 2px solid green;
+  height: 5em;
+}
+
+.chat-area:focus {
+  box-shadow: none;
+  outline: none;
 }
 
 
@@ -131,21 +137,38 @@ p {
   padding-bottom: 2em;
 }
 
-.inputCreatePlanet,
-.buttonCreatePlanet,
-.inputRemovePlanet,
-.buttonRemovePlanet {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 25em;
+
+#settings-modal {
+
+  .form-control,
+  .btn-default {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-control {
+    width: 15em;
+  }
+  .btn-default {
+    width: 10em;
+  }
+
+  .logoutButton {
+    background-color: lightgreen;
+    color: black;
+  }
+
+  .removePlanetLabel {
+    color: red;
+  }
 }
 
-.buttonRemovePlanet {
+.removePlanetButton {
   background-color: red;
 }
 
-.inputRemovePlanet:focus {
+.removePlanetInput:focus {
   box-shadow: 0px 0px 5px red;
   border: solid 1px red;
 }
@@ -160,4 +183,20 @@ p {
 
 .hashtag-icon {
   padding-right: .5em;
+}
+
+.user-icon {
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  background-color: lightgreen;
+
+  margin-top: .5em;
+}
+
+.messagePara {
+  float:left;
+  margin-top: -3em;
+  margin-left: 5em;
+
 }

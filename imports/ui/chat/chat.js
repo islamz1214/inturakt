@@ -137,8 +137,8 @@ Template.chat.events = {
   'click .create-planet-icon': function(event) {
     $('#create-planet-modal').modal('show');
   },
-  'click .buttonCreatePlanet': function(event, template) {
-    const planetInput = template.find('.inputCreatePlanet').value;
+  'click .createPlanetButton': function(event, template) {
+    const planetInput = template.find('.createPlanetInput').value;
 
     if(planetInput.trim() != '') {
       Planets.insert({
@@ -151,9 +151,9 @@ Template.chat.events = {
   'click .settings-icon': function(event) {
     $('#settings-modal').modal('show');
   },
-  'click .buttonRemovePlanet': function(event, template) {
+  'click .removePlanetButton': function(event, template) {
 
-    const planetInput = template.find('.inputRemovePlanet').value;
+    const planetInput = template.find('.removePlanetInput').value;
     Meteor.call('removeNow', planetInput);
     /*
     // Verify ownership of planet
