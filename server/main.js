@@ -10,10 +10,13 @@ Meteor.methods({
     // Verify ownership of planet
     if(Planets.find({name: planetInput, planetOwner: Meteor.user().username}).count() === 1) {
       // Verified --> remove planet
-      console.log("you can remove!");
-      Planets.remove({planetOwner: "Mike"});
+      Planets.remove({ $and:[{planetOwner: "Mike"}, {name: planetInput}]});
     } else {
       console.log("you can't remove!");
     }
+  },
+  'planetAccess'(username, currentPlanet) {
+
+    //Planets.update({planetOwner: Meteor.user().username}, {name: currentPlanet}, { $push: { access: username}}, {upsert: true});
   },
 });

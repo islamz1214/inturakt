@@ -32,9 +32,8 @@
   margin-left: auto;
   margin-right: auto;
   width: calc(100% - 15em);
-
+  margin-top: 2em;
   border: 2px solid green;
-  height: 5em;
 }
 
 .chat-area:focus {
@@ -132,6 +131,16 @@ p {
   text-align: center;
 }
 
+#create-planet-modal {
+  .form-control,
+  .btn-default {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25em;
+  }
+}
+
 .radio-inline {
   margin-left: 37%;
   padding-bottom: 2em;
@@ -189,8 +198,7 @@ p {
   height: 5em;
   width: 5em;
   border-radius: 50%;
-  background-color: lightgreen;
-
+  background-color: lightblue;
   margin-top: .5em;
 }
 

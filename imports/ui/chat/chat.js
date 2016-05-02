@@ -25,6 +25,15 @@ Template.chat.helpers({
   planetCount: function() {
     return Planets.find({}).count();
   },
+  planetAccess: function() {
+    const currentPlanet = Session.get('planet');
+
+    // Check planet access
+    // If planet does not have access field then true
+
+    // IF planet has access field -> make sure this.username equals to one of the username list --> true
+    // Otherwise return false;
+  },
 
 });
 
@@ -36,7 +45,6 @@ Template.messages.helpers({
     } else {
       currentPlanet = Session.get('planet');
     }
-    console.log(Meteor.userId());
     return Messages.find({'planetRoom': currentPlanet});
   },
 });
@@ -129,7 +137,10 @@ Template.chat.events = {
     }
   },
   'click .planet-list': function(event) {
-    Session.set('planet', this.name);
+    // Check if user has access to planet
+
+      Session.set('planet', this.name);
+
   },
   'click .directMessage-list': function(event) {
     Session.set('user', dm_generater(Meteor.user().username + this.username));
@@ -140,13 +151,27 @@ Template.chat.events = {
   'click .createPlanetButton': function(event, template) {
     const planetInput = template.find('.createPlanetInput').value;
 
-    if(planetInput.trim() != '') {
-      Planets.insert({
-        planetOwner: Meteor.user().username,
-        name: planetInput,
-        status: status,
-      });
+
+    if(document.getElementById('public-radio').checked) {
+      if(planetInput.trim() != '') {
+        Planets.insert({
+          planetOwner: Meteor.user().username,
+          name: planetInput,
+          status: "public",
+        });
+      }
+    } else {
+      if(planetInput.trim() != '') {
+        Planets.insert({
+          planetOwner: Meteor.user().username,
+          name: planetInput,
+          status: "private",
+          access: [Meteor.user().username],
+        });
+      }
     }
+
+
   },
   'click .settings-icon': function(event) {
     $('#settings-modal').modal('show');
@@ -167,6 +192,12 @@ Template.chat.events = {
 */
 
   },
+  'click .planetAccessButton' : function(event, template) {
+    const userAccess = template.find('.planetAccessInput').value;
+    console.log("sdfs");
+    const currentPlanet = Session.get('planet')
+    Meteor.call('planetAccess', userAccess, currentPlanet);
+  }
 
 
 }
