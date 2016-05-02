@@ -6,6 +6,21 @@ import { registration } from '../imports/ui/registration/registration.js';
 import { chat } from '../imports/ui/chat/chat.js';
 
 
+function checkLogin(){
+  if(!Meteor.userId()){
+    FlowRouter.go("login");
+  }
+}
+
+function checkAlreadyLogged() {
+  if(Meteor.userId()){
+    FlowRouter.go("chat");
+  }
+}
+
+
+
+
 FlowRouter.route('/', {
   action: function() {
     BlazeLayout.render("home");
@@ -14,6 +29,7 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/login',{
   name:"login",
+  triggersEnter: [checkAlreadyLogged],
   action: function(){
     BlazeLayout.render("login");
   }
@@ -21,13 +37,16 @@ FlowRouter.route('/login',{
 
 FlowRouter.route('/registration',{
   name:"registration",
+  triggersEnter: [checkAlreadyLogged],
   action: function(){
     BlazeLayout.render("registration");
   }
 });
 
+
 FlowRouter.route('/chat',{
   name:"chat",
+  triggersEnter: [checkLogin],
   action: function(){
     BlazeLayout.render("chat", {content: "messages"});
   }

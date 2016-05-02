@@ -114,7 +114,7 @@ p {
   width: 13em;
 }
 
-.create-planet-icon {
+.create-planet-icon, .settings-icon {
   float: right;
   font-size: 1.5em;
   margin-top: -.2em;
@@ -132,13 +132,32 @@ p {
 }
 
 .inputCreatePlanet,
-.buttonCreatePlanet {
+.buttonCreatePlanet,
+.inputRemovePlanet,
+.buttonRemovePlanet {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 25em;
 }
 
+.buttonRemovePlanet {
+  background-color: red;
+}
+
+.inputRemovePlanet:focus {
+  box-shadow: 0px 0px 5px red;
+  border: solid 1px red;
+}
+
 .planets {
   overflow: auto;
+}
+
+.lock-icon {
+  padding-right: .5em;
+}
+
+.hashtag-icon {
+  padding-right: .5em;
 }

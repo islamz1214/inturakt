@@ -5,37 +5,53 @@
 
 <div id="wrapper">
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="create-planet-modal">Create Planet</h4>
-      </div>
-
-      <form class="form-horizontal">
-        <div class="form-group">
-          <div>
-            <input type="text" class="form-control inputCreatePlanet" placeholder="Enter Planet Name">
-          </div>
-          <div class="radio-inline">
-            <input type="radio" name="optradio">Public
-          </div>
-          <div class="radio-inline">
-            <input type="radio" name="optradio">Private
-          </div>
-          <div>
-            <button class="btn btn-default buttonCreatePlanet" data-dismiss="modal">Create</button>
-          </div>
+  <!-- Create Planet Modal -->
+  <div class="modal fade" id="create-planet-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="create-planet-modal">Create Planet</h4>
         </div>
-      </form>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div>
+              <input type="text" class="form-control inputCreatePlanet" placeholder="Enter Planet Name">
+            </div>
+            <div class="radio-inline">
+              <input type="radio" name="optradio">Public
+            </div>
+            <div class="radio-inline">
+              <input type="radio" name="optradio">Private
+            </div>
+            <div>
+              <button class="btn btn-default buttonCreatePlanet" data-dismiss="modal">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-
-
-
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="create-planet-modal">Settings</h4>
+        </div>
+        <form class="form-horizontal">
+          <div class="form-group">
+              <input type="password" class="form-control inputRemovePlanet" placeholder="Remove Planet">
+          </div>
+          <div class="form-group">
+              <button type="submit" class="btn btn-default buttonRemovePlanet" data-dismiss="modal">Remove</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- CHAT-BOX (LEFT) -->
   <div id="chat-box">
@@ -63,14 +79,15 @@
       <div class="top-i"></div>
       <div class="bottom-i"></div>
     </div>
-    <p class="currentUser">{{ currentUser }}</p>
+    <p class="currentUser">{{ currentUser }} <div class="settings-icon">&#9881;</div></p>
     <hr>
     <div class="planets">
       <p>PLANETS ({{ planetCount }})  <div class="create-planet-icon" data-target="#myModal">&oplus;</div> </p>
 
 
       {{#each planets}}
-        <p>{{> planet name=name }}</p>
+        <p>{{> planet status=status name=name  }}</p>
+        
       {{/each}}
 
     </div>

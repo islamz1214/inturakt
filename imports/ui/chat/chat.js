@@ -50,7 +50,16 @@ Template.planet.helpers({
 		} else {
 			return "";
 		}
-	}
+	},
+  getStatusSymbol: function(status) {
+    if(status === "public") {
+      // Hashtag icon
+      return "\u0023";
+    } else {
+      // Lock icon
+      return 	"\uD83D\uDD12";
+    }
+  }
 });
 
 
@@ -126,17 +135,38 @@ Template.chat.events = {
     Session.set('user', dm_generater(Meteor.user().username + this.username));
   },
   'click .create-planet-icon': function(event) {
-    $('#myModal').modal('show');
+    $('#create-planet-modal').modal('show');
   },
   'click .buttonCreatePlanet': function(event, template) {
     const planetInput = template.find('.inputCreatePlanet').value;
 
-    console.log(planetInput);
     if(planetInput.trim() != '') {
       Planets.insert({
-        name: planetInput
+        planetOwner: Meteor.user().username,
+        name: planetInput,
+        status: status,
       });
     }
-  }
+  },
+  'click .settings-icon': function(event) {
+    $('#settings-modal').modal('show');
+  },
+  'click .buttonRemovePlanet': function(event, template) {
+
+    const planetInput = template.find('.inputRemovePlanet').value;
+    Meteor.call('removeNow', planetInput);
+    /*
+    // Verify ownership of planet
+    if(Planets.find({name: planetInput, planetOwner: Meteor.user().username}).count() === 1) {
+      // Verified --> remove planet
+      console.log("you can remove!");
+      Planets.remove({planetOwner: "Mike"});
+    } else {
+      console.log("you can't remove!");
+    }
+*/
+
+  },
+
 
 }
