@@ -194,6 +194,10 @@ Template.chat.events = {
     const userAccess = template.find('.planetAccessInput').value;
     const currentPlanet = Session.get('planet')
     Meteor.call('planetAccess', userAccess, currentPlanet);
+  },
+  'click .logoutButton' : function(event) {
+    Meteor.logout();
+    FlowRouter.go("login");
   }
 
 
