@@ -28,12 +28,14 @@ Template.chat.helpers({
   planetAccess: function() {
     const currentPlanet = Session.get('planet');
 
+
     // Check planet access
     // If planet does not have access field then true
 
     // IF planet has access field -> make sure this.username equals to one of the username list --> true
     // Otherwise return false;
   },
+
 
 });
 
@@ -126,6 +128,7 @@ Template.chat.events = {
     if(event.which == 13 && message.trim() != '')
     {
       Messages.insert({
+        userId: Meteor.userId(),
         user: Meteor.user().username,
         message: message,
         time: Date.now(),
@@ -137,9 +140,18 @@ Template.chat.events = {
     }
   },
   'click .planet-list': function(event) {
-    // Check if user has access to planet
-
+    Session.set('planet', this.name);
+    if(Planets.find({ $and:[{name: Session.get('planet')}, {access: { $exists: false}}]}).count() === 1) {
+      console.log("public room");
       Session.set('planet', this.name);
+    } else if (Planets.find({ $and:[{name: Session.get('planet')}, {access: Meteor.user().username}]}).count() === 1) {
+      console.log("has access");
+      Session.set('planet', this.name);
+    } else {
+      console.log("access denied");
+      Session.set('planet', 'Universe');
+    }
+
 
   },
   'click .directMessage-list': function(event) {
@@ -155,46 +167,31 @@ Template.chat.events = {
     if(document.getElementById('public-radio').checked) {
       if(planetInput.trim() != '') {
         Planets.insert({
-          planetOwner: Meteor.user().username,
           name: planetInput,
           status: "public",
+          planetOwner: Meteor.user().username,
         });
       }
     } else {
       if(planetInput.trim() != '') {
         Planets.insert({
-          planetOwner: Meteor.user().username,
           name: planetInput,
           status: "private",
+          planetOwner: Meteor.user().username,
           access: [Meteor.user().username],
         });
       }
     }
-
-
   },
   'click .settings-icon': function(event) {
     $('#settings-modal').modal('show');
   },
   'click .removePlanetButton': function(event, template) {
-
     const planetInput = template.find('.removePlanetInput').value;
     Meteor.call('removeNow', planetInput);
-    /*
-    // Verify ownership of planet
-    if(Planets.find({name: planetInput, planetOwner: Meteor.user().username}).count() === 1) {
-      // Verified --> remove planet
-      console.log("you can remove!");
-      Planets.remove({planetOwner: "Mike"});
-    } else {
-      console.log("you can't remove!");
-    }
-*/
-
   },
   'click .planetAccessButton' : function(event, template) {
     const userAccess = template.find('.planetAccessInput').value;
-    console.log("sdfs");
     const currentPlanet = Session.get('planet')
     Meteor.call('planetAccess', userAccess, currentPlanet);
   }

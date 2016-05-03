@@ -16,7 +16,7 @@ Meteor.methods({
     }
   },
   'planetAccess'(username, currentPlanet) {
-
-    //Planets.update({planetOwner: Meteor.user().username}, {name: currentPlanet}, { $push: { access: username}}, {upsert: true});
+    // If user owns planet that is private -> give other user access to planet
+    Planets.update( {$and:[{name: currentPlanet}, {planetOwner: Meteor.user().username}, {status: "private"}]}, { $push: { access: username}}, {upsert: false});
   },
 });
