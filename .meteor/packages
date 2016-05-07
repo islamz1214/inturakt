@@ -24,6 +24,4 @@ reywood:bootstrap3-sass
 accounts-password
 accounts-ui
 twbs:bootstrap
-autopublish
-insecure
 session
