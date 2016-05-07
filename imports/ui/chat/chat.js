@@ -141,18 +141,18 @@ Template.chat.events = {
   },
   'click .planet-list': function(event) {
     Session.set('planet', this.name);
-    if(Planets.find({ $and:[{name: Session.get('planet')}, {access: { $exists: false}}]}).count() === 1) {
-      console.log("public room");
+    if(Planets.find({ $and:[{name: Session.get('planet')},
+                    { access: { $exists: false}}]}).count() === 1) {
+      // All users have access
       Session.set('planet', this.name);
-    } else if (Planets.find({ $and:[{name: Session.get('planet')}, {access: Meteor.user().username}]}).count() === 1) {
-      console.log("has access");
+    } else if (Planets.find({ $and:[{name: Session.get('planet')},
+                            { access: Meteor.user().username}]}).count() === 1) {
+      // User has access to private planet
       Session.set('planet', this.name);
     } else {
-      console.log("access denied");
+      // User has no access, send user to Universe
       Session.set('planet', 'Universe');
     }
-
-
   },
   'click .directMessage-list': function(event) {
     Session.set('user', dm_generater(Meteor.user().username + this.username));
@@ -182,6 +182,8 @@ Template.chat.events = {
         });
       }
     }
+
+    template.find('.createPlanetInput').value = "";
   },
   'click .settings-icon': function(event) {
     $('#settings-modal').modal('show');
@@ -189,11 +191,13 @@ Template.chat.events = {
   'click .removePlanetButton': function(event, template) {
     const planetInput = template.find('.removePlanetInput').value;
     Meteor.call('removeNow', planetInput);
+    template.find('.removePlanetInput').value = "";
   },
   'click .planetAccessButton' : function(event, template) {
     const userAccess = template.find('.planetAccessInput').value;
     const currentPlanet = Session.get('planet')
     Meteor.call('planetAccess', userAccess, currentPlanet);
+    template.find('.planetAccessInput').value = "";
   },
   'click .logoutButton' : function(event) {
     Meteor.logout();
@@ -202,3 +206,5 @@ Template.chat.events = {
 
 
 }
+
+//chat.js
