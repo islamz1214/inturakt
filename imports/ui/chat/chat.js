@@ -6,10 +6,8 @@ import './directMessage.html';
 
 
 
+
 Template.chat.helpers({
-  messages: function(planet) {
-    return Messages.find({planet: planet});
-  },
   currentUser: function() {
     return Meteor.user().username;
   },
@@ -122,35 +120,25 @@ function dm_generater(roomId) {
 
 Template.chat.events = {
   'keypress input#message' : function(event) {
-
    const message = document.getElementById('message').value;
 
     if(event.which == 13 && message.trim() != '')
     {
-      Messages.insert({
-        userId: Meteor.userId(),
-        user: Meteor.user().username,
-        message: message,
-        time: Date.now(),
-        planetRoom: getRoom(),
-      });
-
+      Meteor.call('insertMessage', message, getRoom());
       document.getElementById('message').value = '';
       event.preventDefault();
     }
   },
   'click .planet-list': function(event) {
     Session.set('planet', this.name);
-    if(Planets.find({ $and:[{name: Session.get('planet')},
-                    { access: { $exists: false}}]}).count() === 1) {
-      // All users have access
+    if(Planets.find({ $and:[{name: Session.get('planet')}, {access: { $exists: false}}]}).count() === 1) {
+      console.log("public room");
       Session.set('planet', this.name);
-    } else if (Planets.find({ $and:[{name: Session.get('planet')},
-                            { access: Meteor.user().username}]}).count() === 1) {
-      // User has access to private planet
+    } else if (Planets.find({ $and:[{name: Session.get('planet')}, {access: Meteor.user().username}]}).count() === 1) {
+      console.log("has access");
       Session.set('planet', this.name);
     } else {
-      // User has no access, send user to Universe
+      console.log("access denied");
       Session.set('planet', 'Universe');
     }
   },
@@ -163,24 +151,16 @@ Template.chat.events = {
   'click .createPlanetButton': function(event, template) {
     const planetInput = template.find('.createPlanetInput').value;
 
-
-    if(document.getElementById('public-radio').checked) {
+    if(document.getElementById('private-radio').checked) {
       if(planetInput.trim() != '') {
-        Planets.insert({
-          name: planetInput,
-          status: "public",
-          planetOwner: Meteor.user().username,
-        });
+        Meteor.call('createPrivatePlanet', planetInput);
+      }
+    } else if(document.getElementById('public-radio').checked) {
+      if(planetInput.trim() != '') {
+        Meteor.call('createPublicPlanet', planetInput);
       }
     } else {
-      if(planetInput.trim() != '') {
-        Planets.insert({
-          name: planetInput,
-          status: "private",
-          planetOwner: Meteor.user().username,
-          access: [Meteor.user().username],
-        });
-      }
+      console.log("Planet not created");
     }
 
     template.find('.createPlanetInput').value = "";
@@ -191,7 +171,7 @@ Template.chat.events = {
   'click .removePlanetButton': function(event, template) {
     const planetInput = template.find('.removePlanetInput').value;
     Meteor.call('removeNow', planetInput);
-    template.find('.removePlanetInput').value = "";
+    template.find('.removePlanetInput').value = ""
   },
   'click .planetAccessButton' : function(event, template) {
     const userAccess = template.find('.planetAccessInput').value;
@@ -203,8 +183,4 @@ Template.chat.events = {
     Meteor.logout();
     FlowRouter.go("login");
   }
-
-
 }
-
-//chat.js

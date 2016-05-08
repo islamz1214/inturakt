@@ -22,6 +22,32 @@ Meteor.methods({
                     {$push: { access: username}},
                     {upsert: false});
   },
+  'insertMessage'(message, room) {
+     Messages.insert({
+       userId: Meteor.userId(),
+       user: Meteor.user().username,
+       message: message,
+       time: Date.now(),
+       planetRoom: room,
+     });
+  },
+  'createPublicPlanet'(planetInput) {
+    Planets.insert({
+      name: planetInput,
+      status: "public",
+      planetOwner: Meteor.user().username,
+    });
+  },
+  'createPrivatePlanet'(planetInput) {
+    Planets.insert({
+      name: planetInput,
+      status: "private",
+      planetOwner: Meteor.user().username,
+      access: [Meteor.user().username],
+    });
+  }
+
+
 });
 
 
