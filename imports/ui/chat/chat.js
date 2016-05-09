@@ -6,9 +6,11 @@ import './directMessage.html';
 
 
 
+let giphyMessage;
 
 Template.chat.helpers({
   currentUser: function() {
+
     return Meteor.user().username;
   },
   users: function() {
@@ -82,52 +84,38 @@ Template.directMessage.helpers({
 	}
 });
 
-
-
-function getRoom() {
-  if(Session.get('planet') == "") {
-    return Session.get('user');
-  } else {
-    return Session.get('planet');
-  }
-}
-
-function dm_generater(roomId) {
-  //let dm = Session.get('user');
-
-  let dm = roomId;
-
-  let total = 0;
-
-  for(let i = 0; i<dm.length; i++)
-  {
-    if(!isNaN(dm[i])) {
-      total = total + parseInt(dm[i]);
-    } else {
-      if(dm.charCodeAt(i) >= 65 && dm.charCodeAt(i) <= 90) {
-        // Uppercase ASCII
-        total = total + (dm.charCodeAt(i) - 64);
-      } else {
-        // Lowercase ASCII
-        total = total +  (dm.charCodeAt(i) - 96);
-      }
-    }
-  }
-
-  return total;
-
-}
-
 Template.chat.events = {
   'keypress input#message' : function(event) {
-   const message = document.getElementById('message').value;
+    let message = document.getElementById('message').value;
+
+  // var input = '-giphy pizaa';
+    const match = message.match(/^-giphy(.*)/);
+
 
     if(event.which == 13 && message.trim() != '')
     {
-      Meteor.call('insertMessage', message, getRoom());
-      document.getElementById('message').value = '';
-      event.preventDefault();
+      if(match) {
+        // GIF message
+      	message = match[1];
+
+        giphyPicker(message);
+        console.log(Session.get('getGiphy') + "hola");
+        console.log("if match giphy");
+        console.log("suppose to be second");
+
+        //Meteor.call('insertMessage', message, getRoom());
+        document.getElementById('message').value = '';
+        event.preventDefault();
+
+      } else {
+        Meteor.call('insertMessage', message, getRoom());
+        document.getElementById('message').value = '';
+        event.preventDefault();
+      }
+
     }
+
+
   },
   'click .planet-list': function(event) {
     Session.set('planet', this.name);
@@ -183,4 +171,67 @@ Template.chat.events = {
     Meteor.logout();
     FlowRouter.go("login");
   }
+}
+
+function getRoom() {
+  if(Session.get('planet') == "") {
+    return Session.get('user');
+  } else {
+    return Session.get('planet');
+  }
+}
+
+function dm_generater(roomId) {
+  let dm = roomId;
+  let total = 0;
+  for(let i = 0; i<dm.length; i++)
+  {
+    if(!isNaN(dm[i])) {
+      total = total + parseInt(dm[i]);
+    } else {
+      if(dm.charCodeAt(i) >= 65 && dm.charCodeAt(i) <= 90) {
+        // Uppercase ASCII
+        total = total + (dm.charCodeAt(i) - 64);
+      } else {
+        // Lowercase ASCII
+        total = total +  (dm.charCodeAt(i) - 96);
+      }
+    }
+  }
+  return total;
+}
+
+function giphyPicker(message) {
+
+	//var input = document.getElementById("inputGIF").value;
+
+	q = message;
+
+	request = new XMLHttpRequest;
+	request.open('GET', 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q, true);
+
+	request.onload = function() {
+
+		if (request.status >= 200 && request.status < 400){
+
+			data = JSON.parse(request.responseText).data.image_url;
+			//console.log(data);
+			//document.getElementById("giphyme").innerHTML = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
+      //giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
+
+      giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
+
+      Session.set('getGiphy', giphyMessage);
+console.log("suppose to be first");
+
+    } else {
+			console.log('reached giphy, but API returned an error');
+		 }
+	};
+
+	request.onerror = function() {
+		console.log('connection error');
+	};
+
+	request.send();
 }
