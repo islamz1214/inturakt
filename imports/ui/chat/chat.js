@@ -10,7 +10,6 @@ let giphyMessage;
 
 Template.chat.helpers({
   currentUser: function() {
-
     return Meteor.user().username;
   },
   users: function() {
@@ -27,13 +26,6 @@ Template.chat.helpers({
   },
   planetAccess: function() {
     const currentPlanet = Session.get('planet');
-
-
-    // Check planet access
-    // If planet does not have access field then true
-
-    // IF planet has access field -> make sure this.username equals to one of the username list --> true
-    // Otherwise return false;
   },
 
 
@@ -49,6 +41,11 @@ Template.messages.helpers({
     }
     return Messages.find({'planetRoom': currentPlanet});
   },
+  userIconColor: function(user) {
+    var doc = Meteor.users.findOne({'username': user}, {'iconColor':1});
+    return doc.iconColor;
+  }
+
 });
 
 
@@ -172,6 +169,10 @@ Template.chat.events = {
   'click .logoutButton' : function(event) {
     Meteor.logout();
     FlowRouter.go("login");
+  },
+  'click .setIconColorButton' : function (event, template) {
+    const iconColor = template.find('.iconColorInput').value;
+    Meteor.call('setIconColor', iconColor);
   }
 }
 

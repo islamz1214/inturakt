@@ -45,9 +45,10 @@ Meteor.methods({
       planetOwner: Meteor.user().username,
       access: [Meteor.user().username],
     });
-  }
-
-
+  },
+  'setIconColor'(color) {
+    Meteor.users.update({_id: Meteor.userId() }, { $set: { 'iconColor' : color}});
+  },
 });
 
 
