@@ -105,7 +105,7 @@ Template.chat.events = {
           document.getElementById('message').value = '';
           event.preventDefault();
         });
-event.preventDefault();
+        event.preventDefault();
 
 
 
@@ -221,7 +221,7 @@ function giphyPicker(message, callback) {
 			//document.getElementById("giphyme").innerHTML = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
       //giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
 
-      giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
+      giphyMessage = '<img src = "'+data+'"  title="GIF via Giphy" style="border: 2px solid green; max-width: 500px; max-height:200px">';
 
       Session.set('getGiphy', giphyMessage);
       console.log("suppose to be first");
