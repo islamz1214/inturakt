@@ -98,14 +98,16 @@ Template.chat.events = {
         // GIF message
       	message = match[1];
 
-        giphyPicker(message);
-        console.log(Session.get('getGiphy') + "hola");
-        console.log("if match giphy");
-        console.log("suppose to be second");
+        //giphyPicker(message);
+        // call the function
+        giphyPicker(message, function() {
+          Meteor.call('insertMessage', giphyMessage, getRoom());
+          document.getElementById('message').value = '';
+          event.preventDefault();
+        });
+event.preventDefault();
 
-        //Meteor.call('insertMessage', message, getRoom());
-        document.getElementById('message').value = '';
-        event.preventDefault();
+
 
       } else {
         Meteor.call('insertMessage', message, getRoom());
@@ -201,7 +203,7 @@ function dm_generater(roomId) {
   return total;
 }
 
-function giphyPicker(message) {
+function giphyPicker(message, callback) {
 
 	//var input = document.getElementById("inputGIF").value;
 
@@ -222,7 +224,9 @@ function giphyPicker(message) {
       giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
 
       Session.set('getGiphy', giphyMessage);
-console.log("suppose to be first");
+      console.log("suppose to be first");
+      callback(giphyMessage);
+
 
     } else {
 			console.log('reached giphy, but API returned an error');
