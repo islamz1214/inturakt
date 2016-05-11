@@ -64,18 +64,15 @@
 
 
 
-.circle {
-  width: 8em;
-  height: 8em;
-  border-radius: 50%;
+.ring {
+  width: 7em;
+  height: 7em;
+  border-radius: 100px 450px;
   border: 5px solid green;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1em;
-
-  position: relative;
-
+  position: absolute;
+  margin-top: -6.03em;
+  margin-left: 4em;
+  transform: rotate(-10deg);
 }
 
 .top-i {
@@ -98,7 +95,6 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: .5em;
-
 }
 
 hr {
