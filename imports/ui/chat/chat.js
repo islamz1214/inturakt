@@ -85,36 +85,48 @@ Template.chat.events = {
   'keypress input#message' : function(event) {
     let message = document.getElementById('message').value;
 
-  // var input = '-giphy pizaa';
     const match = message.match(/^-giphy(.*)/);
-
 
     if(event.which == 13 && message.trim() != '')
     {
       if(match) {
         // GIF message
       	message = match[1];
-
-        //giphyPicker(message);
-        // call the function
         giphyPicker(message, function() {
           Meteor.call('insertMessage', giphyMessage, getRoom());
           document.getElementById('message').value = '';
-          event.preventDefault();
         });
         event.preventDefault();
-
-
-
       } else {
         Meteor.call('insertMessage', message, getRoom());
         document.getElementById('message').value = '';
         event.preventDefault();
       }
-
     }
+  },
+  'click .sendMessageButton' : function(event) {
+    let message = document.getElementById('message').value;
 
+    const match = message.match(/^-giphy(.*)/);
 
+    if(message.trim() != '')
+    {
+      if(match) {
+        // GIF message
+      	message = match[1];
+        giphyPicker(message, function() {
+          Meteor.call('insertMessage', giphyMessage, getRoom());
+          document.getElementById('message').value = '';
+        });
+        event.preventDefault();
+      } else {
+        Meteor.call('insertMessage', message, getRoom());
+        document.getElementById('message').value = '';
+        event.preventDefault();
+      }
+    } else {
+      event.preventDefault();
+    }
   },
   'click .planet-list': function(event) {
     Session.set('planet', this.name);
@@ -206,30 +218,15 @@ function dm_generater(roomId) {
 
 function giphyPicker(message, callback) {
 
-	//var input = document.getElementById("inputGIF").value;
-
-	q = message;
-
 	request = new XMLHttpRequest;
-  //"Powered by GIPHY"
-	request.open('GET', 'https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+q, true);
+	request.open('GET', 'https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+message, true);
 
 	request.onload = function() {
 
 		if (request.status >= 200 && request.status < 400){
-
 			data = JSON.parse(request.responseText).data.image_url;
-			//console.log(data);
-			//document.getElementById("giphyme").innerHTML = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
-      //giphyMessage = '<center><img src = "'+data+'"  title="GIF via Giphy" width="200" height="200"></center>';
-
-      giphyMessage = '<img src = "'+data+'"  title="GIF via Giphy" style="border: 2px solid green; max-width: 500px; max-height:200px">';
-
-      Session.set('getGiphy', giphyMessage);
-      console.log("suppose to be first");
+      giphyMessage = '<img src = "'+data+'" id="giphyIMG">';
       callback(giphyMessage);
-
-
     } else {
 			console.log('reached giphy, but API returned an error');
 		 }
