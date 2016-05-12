@@ -84,8 +84,8 @@ Template.directMessage.helpers({
 Template.chat.events = {
   'keypress input#message' : function(event) {
     let message = document.getElementById('message').value;
-
     const match = message.match(/^-giphy(.*)/);
+    console.log(match);
 
     if(event.which == 13 && message.trim() != '')
     {
@@ -93,12 +93,12 @@ Template.chat.events = {
         // GIF message
       	message = match[1];
         giphyPicker(message, function() {
-          Meteor.call('insertMessage', giphyMessage, getRoom());
+          Meteor.call('insertMessage', giphyMessage, getPlanet());
           document.getElementById('message').value = '';
         });
         event.preventDefault();
       } else {
-        Meteor.call('insertMessage', message, getRoom());
+        Meteor.call('insertMessage', message, getPlanet());
         document.getElementById('message').value = '';
         event.preventDefault();
       }
@@ -115,12 +115,12 @@ Template.chat.events = {
         // GIF message
       	message = match[1];
         giphyPicker(message, function() {
-          Meteor.call('insertMessage', giphyMessage, getRoom());
+          Meteor.call('insertMessage', giphyMessage, getPlanet());
           document.getElementById('message').value = '';
         });
         event.preventDefault();
       } else {
-        Meteor.call('insertMessage', message, getRoom());
+        Meteor.call('insertMessage', message, getPlanet());
         document.getElementById('message').value = '';
         event.preventDefault();
       }
@@ -188,7 +188,7 @@ Template.chat.events = {
   }
 }
 
-function getRoom() {
+function getPlanet() {
   if(Session.get('planet') == "") {
     return Session.get('user');
   } else {
@@ -218,22 +218,18 @@ function dm_generater(roomId) {
 
 function giphyPicker(message, callback) {
 
-	request = new XMLHttpRequest;
+	request = new XMLHttpRequest();
 	request.open('GET', 'https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+message, true);
 
 	request.onload = function() {
 
 		if (request.status >= 200 && request.status < 400){
-			data = JSON.parse(request.responseText).data.image_url;
-      giphyMessage = '<img src = "'+data+'" id="giphyIMG">';
+			const data = JSON.parse(request.responseText).data.image_url;
+      giphyMessage = '<img src = "'+ data +'" id="giphyIMG">';
       callback(giphyMessage);
     } else {
 			console.log('reached giphy, but API returned an error');
 		 }
-	};
-
-	request.onerror = function() {
-		console.log('connection error');
 	};
 
 	request.send();
