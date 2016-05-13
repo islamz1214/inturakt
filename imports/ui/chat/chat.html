@@ -46,18 +46,18 @@
         </div>
         <form class="form-horizontal">
           <div class="form-group">
-              <label class="col-sm-4 control-label iconColorLabel">Icon-Color: </label>
-              <input type="text" class="form-control col-sm-4 iconColorInput" placeholder="" />
+              <label class="col-xs-3 col-sm-4 control-label iconColorLabel">Icon-Color: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 iconColorInput" placeholder="" />
               <button type="submit" class="btn btn-default colsm-2 setIconColorButton" data-dismiss="modal">Set</button>
           </div>
           <div class="form-group">
-              <label class="col-sm-4 control-label planetAccessLabel">Planet-Access: </label>
-              <input type="text" class="form-control col-sm-4 planetAccessInput" placeholder="" />
+              <label class="col-xs-3 col-sm-4 control-label planetAccessLabel">Planet-Access: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 planetAccessInput" placeholder="" />
               <button type="submit" class="btn btn-default colsm-2 planetAccessButton" data-dismiss="modal">Access</button>
           </div>
           <div class="form-group">
-              <label class="col-sm-4 control-label removePlanetLabel">Planet-Remove: </label>
-              <input type="text" class="form-control col-sm-4 removePlanetInput" placeholder="" />
+              <label class="col-xs-3 col-sm-4 control-label removePlanetLabel">Planet-Remove: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 removePlanetInput" placeholder="" />
               <button type="submit" class="btn btn-default colsm-2 removePlanetButton" data-dismiss="modal">Remove</button>
           </div>
           <div class="form-group">
@@ -71,17 +71,12 @@
 
   <!-- CHAT-BOX (LEFT) -->
   <div id="chat-box">
-    <div class="chat-messages">
-
+    <div id="chat-messages">
       {{>Template.dynamic template=content}}
-      <!--
-      {{#each messages}}
-      <strong>{{user}} {{time}}:</strong> {{message}}<br>
-      {{/each}}-->
     </div>
     <div class="chat-input">
       <form name="message" action="" class="chat-form">
-            <input name="input" type="text" class="chat-area" id="message">
+            <input name="input" type="text" class="chat-area" id="message" autocomplete="off">
             <button class="sendMessageButton" type="button">Send</button>
         </form>
     </div>

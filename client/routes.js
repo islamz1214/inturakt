@@ -18,9 +18,6 @@ function checkAlreadyLogged() {
   }
 }
 
-
-
-
 FlowRouter.route('/', {
   action: function() {
     BlazeLayout.render("home");
@@ -43,7 +40,6 @@ FlowRouter.route('/registration',{
   }
 });
 
-
 FlowRouter.route('/chat',{
   name:"chat",
   triggersEnter: [checkLogin],
@@ -51,12 +47,3 @@ FlowRouter.route('/chat',{
     BlazeLayout.render("chat", {content: "messages"});
   }
 });
-
-/*
-FlowRouter.route('/chat', {
-  name:"chat",
-  //Session.set('planet', this.params.planet);
-  action: function() {
-    BlazeLayout.render("chat", {content: "messages"});
-  }
-});*/

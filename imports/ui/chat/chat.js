@@ -8,8 +8,10 @@ import './directMessage.html';
 
 let giphyMessage;
 
+
 Template.chat.helpers({
   currentUser: function() {
+
     return Meteor.user().username;
   },
   users: function() {
@@ -33,6 +35,7 @@ Template.chat.helpers({
 
 Template.messages.helpers({
   messages: function() {
+
     let currentPlanet;
     if(Session.get('planet') == "") {
       currentPlanet = Session.get('user');
@@ -131,15 +134,13 @@ Template.chat.events = {
   'click .planet-list': function(event) {
     Session.set('planet', this.name);
     if(Planets.find({ $and:[{name: Session.get('planet')}, {access: { $exists: false}}]}).count() === 1) {
-      console.log("public room");
       Session.set('planet', this.name);
     } else if (Planets.find({ $and:[{name: Session.get('planet')}, {access: Meteor.user().username}]}).count() === 1) {
-      console.log("has access");
       Session.set('planet', this.name);
     } else {
-      console.log("access denied");
       Session.set('planet', 'Universe');
     }
+
   },
   'click .directMessage-list': function(event) {
     Session.set('user', dm_generater(Meteor.user().username + this.username));
@@ -185,6 +186,7 @@ Template.chat.events = {
   'click .setIconColorButton' : function (event, template) {
     const iconColor = template.find('.iconColorInput').value;
     Meteor.call('setIconColor', iconColor);
+    template.find('.iconColorInput').value = "";
   }
 }
 

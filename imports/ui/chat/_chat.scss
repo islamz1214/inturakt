@@ -15,7 +15,7 @@
   border: 1px solid green;
 }
 
-.chat-messages {
+#chat-messages {
   height: 80vh;
   border: 1px solid green;
   padding-left: 1em;
@@ -244,4 +244,12 @@ p {
 
 .planet-title, .dm-title {
   padding-left: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  #settings-modal {
+    .control-label {
+      margin-left: 5em;
+    }
+  }
 }
