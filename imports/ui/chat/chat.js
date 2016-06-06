@@ -96,12 +96,12 @@ Template.chat.events = {
         // GIF message
       	message = match[1];
         giphyPicker(message, function() {
-          Meteor.call('insertMessage', giphyMessage, getPlanet());
+          Meteor.call('insertMessage', giphyMessage, getPlanet(), getTime());
           document.getElementById('message').value = '';
         });
         event.preventDefault();
       } else {
-        Meteor.call('insertMessage', message, getPlanet());
+        Meteor.call('insertMessage', message, getPlanet(), getTime());
         document.getElementById('message').value = '';
         event.preventDefault();
       }
@@ -235,4 +235,26 @@ function giphyPicker(message, callback) {
 	};
 
 	request.send();
+}
+
+function getTime() {
+  const time = new Date();
+  let hours = time.getHours();
+  let amPM = "am";
+  let minutes;
+
+
+  if (hours > 12) {
+      hours -= 12;
+      amPM = "pm";
+  } else if (hours === 0) {
+     hours = 12;
+  }
+
+  if(time.getMinutes() < 10) {
+    minutes = "0" + time.getMinutes();
+  } else {
+    minutes = time.getMinutes();
+  }
+  return hours + ":" + minutes + amPM;
 }

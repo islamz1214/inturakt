@@ -22,12 +22,12 @@ Meteor.methods({
                     {$push: { access: username}},
                     {upsert: false});
   },
-  'insertMessage'(message, room) {
+  'insertMessage'(message, room, time) {
      Messages.insert({
        userId: Meteor.userId(),
        user: Meteor.user().username,
        message: message,
-       time: Date.now(),
+       time: time,
        planetRoom: room,
      });
   },

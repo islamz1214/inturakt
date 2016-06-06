@@ -2,7 +2,7 @@
 	{{#each messages}}
 		<div class="message">
 			<div class="user-icon" style="background-color: {{userIconColor user}}; border: 1px solid black"></div>
-			<div class="messagePara">{{ user }}: </div>
+			<div class="messageUsername">{{ user }} <span class="messageTime">{{time}}</span></div>
 			<div class="wholeMessage">{{{ message }}}</div>
 	 </div>
 	{{/each}}
