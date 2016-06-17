@@ -42,7 +42,19 @@ Template.messages.helpers({
     } else {
       currentPlanet = Session.get('planet');
     }
-    return Messages.find({'planetRoom': currentPlanet});
+    
+    let cursor = Messages.find({'planetRoom': currentPlanet});
+    cursor.observe({
+    added: function(id, object) {
+       // loads bottom of chat-messages
+       Tracker.afterFlush(function () {
+          var element = document.getElementById("chat-messages");
+          element.scrollTop = element.scrollHeight;
+        });
+      } 
+    });
+
+    return cursor;
   },
   userIconColor: function(user) {
     var doc = Meteor.users.findOne({'username': user}, {'iconColor':1});
