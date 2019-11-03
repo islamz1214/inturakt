@@ -1,21 +1,114 @@
-<body>
-  {{> chatInput}}
-  <hr>
-  {{> messages}}
-</body>
+<head>
+  <!-- FAVICON -->
+  <link rel="icon" href="images/favicon.ico?v=2">
+</head>
 
 <!-- Title and User Input-->
-<template name="chatInput">
-  <h1>Inturakt</h1>
-  <h4>The future of chat</h4>
-  <p>Name: <input type="text" id="name"></p>
-  <p>Message: <input type="text" id="message"></p>
-  <button type="button" id="sendButton">Send</button>
-</template>
+<template name="chat">
 
-<!-- Display messages -->
-<template name="messages">
-  {{#each messages}}
-  <strong>{{name}}:</strong> {{message}}<br>
-  {{/each}}
+<div id="wrapper">
+
+  <!-- Create Planet Modal -->
+  <div class="modal fade" id="create-planet-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="create-planet-modal">Create Planet</h4>
+        </div>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div>
+              <input type="text" class="form-control createPlanetInput" placeholder="Enter Planet Name">
+            </div>
+            <div class="radio-inline">
+              <input type="radio" id="public-radio" name="optradio">Public
+            </div>
+            <div class="radio-inline">
+              <input type="radio" id="private-radio" name="optradio">Private
+            </div>
+            <div>
+              <button class="btn btn-default createPlanetButton" data-dismiss="modal">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="create-planet-modal">Settings</h4>
+        </div>
+        <form class="form-horizontal">
+          <div class="form-group">
+              <label class="col-xs-3 col-sm-4 control-label iconColorLabel">Icon-Color: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 iconColorInput" placeholder="" />
+              <button type="submit" class="btn btn-default colsm-2 setIconColorButton" data-dismiss="modal">Set</button>
+          </div>
+          <div class="form-group">
+              <label class="col-xs-3 col-sm-4 control-label planetAccessLabel">Planet-Access: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 planetAccessInput" placeholder="" />
+              <button type="submit" class="btn btn-default colsm-2 planetAccessButton" data-dismiss="modal">Access</button>
+          </div>
+          <div class="form-group">
+              <label class="col-xs-3 col-sm-4 control-label removePlanetLabel">Planet-Remove: </label>
+              <input type="text" class="form-control col-xs-6 col-sm-4 removePlanetInput" placeholder="" />
+              <button type="submit" class="btn btn-default colsm-2 removePlanetButton" data-dismiss="modal">Remove</button>
+          </div>
+          <div class="form-group">
+              <button type="submit" class="btn btn-default logoutButton">Logout</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT-BOX (LEFT) -->
+  <div id="chat-box">
+    <div id="chat-messages">
+      {{>Template.dynamic template=content}}
+    </div>
+    <div class="chat-input">
+      <form name="message" action="" class="chat-form">
+            <input name="input" type="text" class="chat-area" id="message" autocomplete="off">
+            <button class="sendMessageButton" type="button">Send</button>
+        </form>
+    </div>
+  </div>
+
+  <!-- CHAT-NAV (RIGHT) -->
+  <div id="chat-nav">
+    <div class="logo">
+      <div class="top-i"></div>
+      <div class="bottom-i"></div>
+      <div class="ring"></div>
+ </div>
+    <p class="currentUser">{{ currentUser }} <div class="settings-icon">&#9881;</div></p>
+    <hr>
+    <div class="planets">
+      <p class="planet-title">PLANETS ({{ planetCount }})  <div class="create-planet-icon" data-target="#myModal">&oplus;</div> </p>
+
+
+      {{#each planets}}
+        <p>{{> planet status=status name=name  }}</p>
+
+      {{/each}}
+
+    </div>
+    <div class="direct-messages">
+      <p class="dm-title">DIRECT MESSAGES ({{userCount}})</p>
+      {{#each users}}
+      <p>{{> directMessage username=username }}</p>
+      {{/each}}
+    </div>
+  </div>
+
+</div>
+
 </template>

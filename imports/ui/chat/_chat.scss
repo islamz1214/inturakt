@@ -1,0 +1,269 @@
+.iconColorLabel, .planetAccessLabel {
+  color: black;
+}
+
+.currentUser {
+  margin-left: 5em;
+  padding-top: 1em;
+  font-weight: bold;
+}
+
+#chat-box {
+  width: calc(100% - 15em);
+  height: 100vh;
+  float:left;
+  border: 1px solid green;
+}
+
+#chat-messages {
+  height: 80vh;
+  border: 1px solid green;
+  padding-left: 1em;
+  overflow: auto;
+}
+
+.chat-input {
+  height: 20vh;
+  border: 1px solid green;
+}
+
+.chat-form {
+  padding-left: 1em;
+}
+
+.chat-area {
+  width: calc(100% - 15em);
+  //margin-top: 2em;
+  border: 2px solid green;
+  //height: 5em;
+  min-width: 10em;
+
+}
+
+.chat-area:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+
+
+#chat-nav {
+  width: 15em;
+  height: 100vh;
+  border: 1px solid green;
+  float:left;
+
+
+}
+
+
+
+.ring {
+  width: 7em;
+  height: 7em;
+  border-radius: 100px 450px;
+  border: 5px solid green;
+  position: absolute;
+  margin-top: -6.03em;
+  margin-left: 4em;
+  transform: rotate(-10deg);
+}
+
+.top-i {
+  width: 1.2em;
+  height: 1.2em;
+  background-color: green;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-top: 1em;
+
+}
+
+.bottom-i {
+  width: .75em;
+  height: 4em;
+  background-color: green;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: .5em;
+}
+
+hr {
+  height: 1px;
+  background-color: green;
+}
+
+p {
+  //padding-left: 1em;
+  font-size: 1.2em;
+}
+
+.planets {
+  height: 30vh;
+
+}
+
+.direct-messages {
+  overflow: auto;
+  height: 38vh;
+}
+
+.planet-list, .directMessage-list{
+  padding-top: .5em;
+  padding-bottom: .5em;
+  cursor: pointer;
+  margin: 0;
+  list-style: none;
+}
+
+.planet-name, .directMessage-name {
+  color: black;
+  padding-left: 10px;
+}
+
+.planet-list.active,
+.directMessage-list.active,
+.logoutButton {
+  background-color: lightgreen;
+  width: 100%;
+}
+
+
+
+.create-planet-icon, .settings-icon {
+  float: right;
+  font-size: 1.5em;
+  margin-top: -.2em;
+  margin-right: .5em;
+  cursor: pointer;
+}
+
+.create-planet-modal {
+  text-align: center;
+}
+
+#create-planet-modal {
+  .form-control,
+  .btn-default {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25em;
+  }
+}
+
+.radio-inline {
+  margin-left: 37%;
+  padding-bottom: 2em;
+}
+
+
+#settings-modal {
+
+  .form-control,
+  .btn-default {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-control {
+    width: 15em;
+  }
+  .btn-default {
+    width: 10em;
+  }
+
+  .logoutButton {
+    background-color: lightgreen;
+    width: 10em;
+    border: 1px solid black;
+    color: black;
+  }
+
+  .removePlanetLabel {
+    color: red;
+  }
+}
+
+.removePlanetButton {
+  background-color: red;
+}
+
+.removePlanetInput:focus {
+  box-shadow: 0px 0px 5px red;
+  border: solid 1px red;
+}
+
+.planets {
+  overflow: auto;
+}
+
+.lock-icon {
+  padding-right: .5em;
+}
+
+.hashtag-icon {
+  padding-right: .5em;
+}
+
+.user-icon {
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  background-color: lightgreen;
+  margin-top: .5em;
+  margin-bottom: 2em;
+}
+
+.message{
+  margin-bottom: 2em;
+}
+
+
+.messageUsername {
+  float:left;
+  margin-top: -5em;
+  margin-left: 5em;
+  font-size: 1.2em;
+}
+
+.wholeMessage {
+  margin-top: -3.5em;
+  margin-left: 5em;
+  font-size: 1.2em;
+}
+
+.user-message {
+  float:left;
+}
+
+.messageTime {
+  color: gray;
+  font-size: .75em;
+}
+
+#giphyIMG {
+  border: 2px solid green;
+  max-width: 500px;
+  max-height:200px;
+}
+
+.planet-title, .dm-title {
+  padding-left: 10px;
+}
+
+#homeLogin {
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  #settings-modal {
+    .control-label {
+      margin-left: 5em;
+    }
+  }
+}

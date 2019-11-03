@@ -1,4 +1,4 @@
-.login-container{
+.registration-container{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -6,13 +6,23 @@
   width: 100vw;
 
 
-  .login{
+  .registration{
     border-radius: 5px;
     padding: 1rem;
     //background: linear-gradient(to top, green, black);
     border: 3px solid green;
   }
 
+}
+
+a {
+  color: white;
+  text-decoration: none !important;
+}
+
+h1, h2{
+  text-align: center;
+  color: green;
 }
 
 form {
